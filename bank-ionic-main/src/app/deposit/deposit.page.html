@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start" color="danger">
+        <ion-button (click)="cancel()">
+          <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>Back</ion-title>
+  </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-card-header>
+      <ion-card-title>Add deposit to <strong style="text-transform: uppercase; color:#16a085">{{account.code}}</strong></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card>
+      <ion-spinner name="bubbles" color="primary" class="center" *ngIf="progressBar"></ion-spinner>
+  
+      <ion-card-content>
+        <form name="user" (ngSubmit)="depositOperation()" #formRegister="ngForm" novalidate>
+  
+          <ion-item>
+            <ion-input type="number" placeholder="Enter amount" name="amount" [(ngModel)]="operation.amount" #amount="ngModel"
+              required></ion-input>
+          </ion-item> <br>
+  
+          <ion-button type="submit" color="warning" fill="solid" size="large" expand="block"
+            [disabled]="amount.invalid">
+            Add</ion-button>
+        </form>
+  
+      </ion-card-content>
+    </ion-card>
+
+  </ion-content>

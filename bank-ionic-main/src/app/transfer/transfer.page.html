@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start" color="danger">
+        <ion-button (click)="cancel()">
+          <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>Back</ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Transfer</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+
+  <ion-card-header>
+    <ion-card-title>From <strong style="text-transform: uppercase; color:#c0392b">{{titleFrom}}</strong> Account To  <strong style="text-transform: uppercase; color:#16a085">{{titleTo}} </strong>Account </ion-card-title>
+  </ion-card-header>
+
+  <ion-card>
+    <ion-spinner name="bubbles" color="primary" class="center" *ngIf="progressBar"></ion-spinner>
+    <ion-text color="danger" *ngIf="showMessageError">
+      <h1 style="margin-left: 20px;">Insufficient balance</h1>
+    </ion-text>
+    <ion-card-content>
+      <form name="user" #formRegister="ngForm" novalidate>
+
+        <ion-item>
+          <ion-input type="number" placeholder="Enter amount" name="amount.amount" [(ngModel)]="operation.amount" #amount="ngModel"
+            required></ion-input>
+        </ion-item> <br>
+
+        <ion-button type="submit" color="warning" fill="solid" size="large" expand="block"
+          [disabled]="amount.invalid" (click)="transferCode1()" *ngIf="showTransferCode1">
+          Transfer
+        </ion-button>
+        <ion-button type="submit" color="warning" fill="solid" size="large" expand="block"
+        [disabled]="amount.invalid" (click)="transferCode2()" *ngIf="showTransferCode2">
+        Transfer
+      </ion-button>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>  
+    <ion-card-content>
+     <ion-list>
+      <ion-item color="warning" >
+        <ion-label>
+          {{standingAccountCode.code}} - <strong>{{standingAccountCode.balance}}</strong>
+        </ion-label>
+      </ion-item>
+     </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>  
+    <ion-card-content>
+     <ion-list>
+      <ion-item color="warning">
+        <ion-label>
+          {{savingsAccountCode.code}} - <strong>{{savingsAccountCode.balance}}</strong>
+        </ion-label>
+      </ion-item>
+     </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

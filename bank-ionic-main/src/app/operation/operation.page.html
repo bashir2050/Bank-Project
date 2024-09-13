@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start" color="danger">
+        <ion-button (click)="cancel()">
+          <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>Back</ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Operations</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+     <ion-list *ngFor="let o of operations">
+      <ion-item>
+        <ion-label>
+          {{o.amount}}$ - {{o.typeOperation}} - {{o.operationDate|date}}
+        </ion-label>
+      </ion-item>
+     </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start" color="danger">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Back</ion-title>
+    <ion-buttons slot="primary" (click)="logout()">
+      <ion-button color="light" fill="outline">
+         Logout
+        <ion-icon slot="end" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="stadingAccounts!=null">
+    <ion-card-header color="light">
+      <ion-card-title>Stading Account</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngFor="let stading of stadingAccounts">
+        <div style="margin: auto 100px; text-align: center; margin-bottom: 20px;">
+          <div style="width: 230px; background-color: #9b59b6; border-radius: 5%; color: #ecf0f1;">
+            <h1 style="font-size: 50px; margin-top: 20px;">
+              {{stading.balance}},00
+            </h1>
+          </div>
+          <br />
+          <ion-text color="dark">
+            <h1 style="text-transform: uppercase;">No: {{stading.code}}</h1>
+          </ion-text>
+          <ion-text color="danger">
+            <h5>{{stading.createDate | date}}</h5>
+          </ion-text>
+          <ion-button size="small" fill="outline" color="primary" (click)="doOperation(stading.id)">Operations
+          </ion-button>
+        </div>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" color="success" (click)="depositOperation(stading.id)">Deposit</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" color="danger" [disabled]="stading.balance==0" (click)="debitOperation(stading.id)">Debit</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" color="warning" [disabled]="stading.balance==0" (click)="transferCode1(stading.id, id)">Transfer</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="savingsAccounts!=null">
+    <ion-card-header color="light">
+      <ion-card-title>Savings Account</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngFor="let savingsAccount of savingsAccounts">
+        <div style="margin: auto 100px; text-align: center; margin-bottom: 20px;">
+          <div style="width: 230px; background-color: #9b59b6; border-radius: 5%; color: #ecf0f1;">
+            <h1 style="font-size: 50px; margin-top: 20px;">
+              {{savingsAccount.balance}},00
+            </h1>
+          </div>
+          <br />
+          <ion-text color="dark">
+            <h1 style="text-transform: uppercase;">No: {{savingsAccount.code}}</h1>
+          </ion-text>
+          <ion-text color="danger">
+            <h5>{{savingsAccount.createDate | date}}</h5>
+          </ion-text>
+          <ion-button size="small" fill="outline" color="primary" (click)="doOperation(savingsAccount.id)">Operations
+          </ion-button>
+        </div>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" color="success" (click)="depositOperation(savingsAccount.id)">Deposit</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" color="danger" [disabled]="savingsAccount.balance==0" (click)="debitOperation(savingsAccount.id)">Debit</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" color="warning" [disabled]="savingsAccount.balance==0" (click)="transferCode2(savingsAccount.id, id)">Transfer</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

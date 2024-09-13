@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start" color="danger">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Back</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngIf="showEditTax">
+    <ion-card-header>
+      <ion-card-title>Update tax </ion-card-title>
+    </ion-card-header>
+    <ion-spinner name="bubbles" color="primary" class="center" *ngIf="progressBar"></ion-spinner>
+
+    <ion-card-content>
+      <form name="user" (ngSubmit)="addStandingAccountTax()" #formRegister="ngForm" novalidate>
+
+        <ion-item>
+          <ion-input type="number" placeholder="Enter tax" name="tax" [(ngModel)]="savingsAccount.tax" #tax="ngModel"
+            required></ion-input>
+        </ion-item> <br>
+
+        <ion-button type="submit" color="warning" fill="solid" size="large" expand="block" [disabled]="tax.invalid">
+          Add</ion-button>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="showEditLoan">
+
+    <ion-card-header>
+      <ion-card-title>Update loan</ion-card-title>
+    </ion-card-header>
+
+    <ion-spinner name="bubbles" color="primary" class="center" *ngIf="progressBar"></ion-spinner>
+
+    <ion-card-content>
+      <form name="user" (ngSubmit)="addStandingAccountLoan()" #formRegister="ngForm" novalidate>
+
+        <ion-item>
+          <ion-input type="number" placeholder="Enter loan" name="loan" [(ngModel)]="standingAccount.loan"
+            #loan="ngModel" required></ion-input>
+        </ion-item> <br>
+
+        <ion-button type="submit" color="warning" fill="solid" size="large" expand="block" [disabled]="loan.invalid">
+          Add</ion-button>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
